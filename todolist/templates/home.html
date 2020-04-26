@@ -1,0 +1,41 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Welcome!</h1>
+    <div class="section">
+    <div class="todolist">
+        <div class="form-check">
+            <input id="option" class="form-check-input" type="checkbox" value="option 1">
+            <label for="option">Option 1</label>
+        </div>
+        <hr>
+        <div class="form-check">
+            <input id="option" class="form-check-input" type="checkbox" value="option 2">
+            <label for="option">Option 2</label>
+        </div>
+        <hr>
+        <div class="form-check">
+            <input id="option" class="form-check-input" type="checkbox" value="option 3">
+            <label class="strikethrough" for="option">Option 3</label>
+        </div>
+        <hr>
+        <form action="" method="POST">
+        <div class="form-group">
+        <div class="form-check">
+            <input id="option" class="form-check-input" type="checkbox" value="option 3" onChange="this.form.submit()">
+            <label class="strikethrough" for="option">Option 4</label>
+            <a class="edit" href="">Edit</a>
+        </div>
+        </div>
+        </form><hr>
+        <form action="" method="POST">
+            <div class="form-group">
+                <input class="new-item" type="text" placeholder="New Item" name="">
+                <button type="submit" class="button">+</button>
+            </div>
+        </form><hr>
+    </div>
+    </div>
+</div>
+{% endblock %}
