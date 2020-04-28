@@ -2,20 +2,27 @@
     margin: auto;
     text-align: center;
     max-width: 525px;
-    background-color: brown;
+    height: 60px;
+    background-color:rgb(98, 72, 63);
     color: white;
+}
+.center{
+    padding: 5px 0;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
 }
 .section{
     max-width: 525px;
     margin: 0 auto;
-    background-color: antiquewhite;
+    background-color: rgb(250, 247, 162);
     border-radius: 5px;
 }
 .todolist{
     padding-top: 25px;
     max-width: 500px;
     margin: 0 auto;
-    background-color: antiquewhite;
+    background-color: rgb(250, 247, 162);
 }
 input[type=checkbox]:checked + label.strikethrough{
     text-decoration: line-through;
