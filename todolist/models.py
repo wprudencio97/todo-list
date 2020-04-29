@@ -1,6 +1,6 @@
 from todolist import db
 
-class todo(db.Model):
+class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item = db.Column(db.String, nullable=False)
 

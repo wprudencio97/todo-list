@@ -1,39 +1,29 @@
 {% extends 'template.html' %}
 
 {% block content %}
+<br><br>
 <div class="container">
-        <h1 class="title">Welcome!</h1>
+    <h1 class="title">To-Do List</h1>
     <div class="section">
     <div class="todolist">
-        <div class="form-check">
-            <input id="option" class="form-check-input" type="checkbox" value="option 1">
-            <label for="option">Option 1</label>
-        </div>
-        <hr>
-        <div class="form-check">
-            <input id="option" class="form-check-input" type="checkbox" value="option 2">
-            <label for="option">Option 2</label>
-        </div>
-        <hr>
-        <div class="form-check">
-            <input id="option" class="form-check-input" type="checkbox" value="option 3">
-            <label class="strikethrough" for="option">Option 3</label>
-        </div>
-        <hr>
-        <form action="" method="POST">
-        <div class="form-group">
-        <div class="form-check">
-            <input id="option" class="form-check-input" type="checkbox" value="option 3" onChange="this.form.submit()">
-            <label class="strikethrough" for="option">Option 4</label>
-            <a class="edit" href="">Edit</a>
-        </div>
-        </div>
+ 
+        {% for item in items %}
+        <form action="{{ url_for('delete') }}" method="POST">
+            <div class="form-group">
+            <div class="form-check">
+                <input name="item-id" id="list-item" class="form-check-input" type="checkbox" value="{{ item.id }}" onChange="this.form.submit()">
+                <label class="strikethrough" for="list-item">{{ item.item }}</label>
+                <a class="edit" href="{{url_for('edit', id=item.id)}}">Edit</a>
+            </div>
+            </div>
         </form><hr>
+        {% endfor %}
+
         <form action="" method="POST">
             <div class="form-group">
-                <input class="new-item" type="text" placeholder="New Item" name="">
+                <input class="new-item" type="text" placeholder="New Item" name="newitem">
                 <button type="submit" class="button">+</button>
-            </div>
+            </div> 
         </form><hr>
     </div>
     </div>
