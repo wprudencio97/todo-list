@@ -11,7 +11,7 @@
 <form action="{{ url_for('update') }}" method="POST">
     <div class="form-group">
         <input type="hidden" name="id" value="{{ value.id }}">
-        <input class="form-control form-control-lg" type="text" name="item" value="{{ value.item }}">
+        <input class="form-control form-control-lg" type="text" name="item" value="{{ value.item }}" autocomplete="off">
     </div>
     <div class="form-group">
         <div class="center">

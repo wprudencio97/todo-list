@@ -8,21 +8,41 @@ from datetime import date
 def home():
     if request.method == 'POST':
         new_item = request.form.get('newitem')
-        db.session.add(Todo(item = new_item))
+        db.session.add(Todo(item = new_item, category='Todo'))
         db.session.commit()
 
         return redirect(url_for('home'))
     else:
-        return render_template('home.html', items = Todo.query.all(), title='Home', today=date.today())
+        return render_template('home.html', items = Todo.query.filter_by(category='Todo').all(), title='Home', today=date.today())
+
+@app.route('/<category>', methods=['GET', 'POST'])
+def custom_list(category):
+    if request.method == 'POST':
+        new_item = request.form.get('newitem')
+        item_category = request.form.get('category')
+
+        db.session.add(Todo(item=new_item, category=item_category))
+        db.session.commit()
+
+        return redirect(url_for('custom_list', category=item_category))
+    else:
+        category = category.capitalize()
+        item_list = Todo.query.filter_by(category=category).all()
+        return render_template('custom_list.html', title=category, category=category, today=date.today(), items=item_list)
 
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
     if request.method == 'POST':
         item_id = request.form.get('item-id')
+        item = Todo.query.filter_by(id=item_id).first()
+        item_category = item.category
         Todo.query.filter_by(id=item_id).delete()
         db.session.commit()
 
-        return redirect(url_for('home'))
+        if item_category != 'Todo':
+            return redirect(url_for('custom_list', category=item_category))
+        else:
+            return redirect(url_for('home'))
     else:
         return redirect(url_for('home'))
 
@@ -44,7 +64,10 @@ def update():
         item.item = item_content
         db.session.commit()
 
-        return redirect(url_for('home'))
+        if item.category != 'Todo':
+            return redirect(url_for('custom_list', category=item.category))
+        else:
+            return redirect(url_for('home'))
 
     else:
         return redirect(url_for('home'))
