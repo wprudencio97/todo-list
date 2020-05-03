@@ -12,8 +12,8 @@
         <form action="{{ url_for('delete') }}" method="POST">
             <div class="form-group">
             <div class="form-check">
-                <input id="{{ item.item }}" name="item-id" class="form-check-input" type="checkbox" value="{{ item.id }}" onChange="this.form.submit()">
-                <label class="strikethrough" for="{{ item.item }}">{{ item.item }}</label>
+                <input id="{{ item.id }}" name="item-id" class="form-check-input" type="checkbox" value="{{ item.id }}" onChange="this.form.submit()">
+                <label class="strikethrough" for="{{ item.id }}">{{ item.item }}</label>
                 <a class="edit" href="{{url_for('edit', id=item.id)}}">Edit</a>
             </div>
             </div>
