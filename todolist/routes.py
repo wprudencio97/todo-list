@@ -1,6 +1,7 @@
 from todolist import app, db
 from todolist.models import Todo
 from flask import render_template, request, redirect, url_for
+from datetime import date
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -12,7 +13,7 @@ def home():
 
         return redirect(url_for('home'))
     else:
-        return render_template('home.html', items = Todo.query.all(), title='Home')
+        return render_template('home.html', items = Todo.query.all(), title='Home', today=date.today())
 
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
@@ -29,7 +30,7 @@ def delete():
 def edit(id):
     if request.method == 'GET':
         value = Todo.query.filter_by(id=id).first()
-        return render_template('edit.html', value=value, title='Edit')
+        return render_template('edit.html', value=value, title='Edit', today = date.today())
     else:
         return redirect(url_for('home'))
 

@@ -16,25 +16,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-light style="background-color: transparent;"">
         <div class="container">
-        <a class="navbar-brand" href="{{url_for('home')}}">Flask-Todolist</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Flask-Todolist</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
-          </div>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            {{today.day}}/{{today.month}}/{{today.year}}
+          </span>
         </div>
-        </div>
+      </div>
       </nav>
 
     {% block content %} {% endblock content %}
      
     <footer class="footer">
         <div class="container">
-            <span class="text-muted">William Prudencio &copy; 2020</span>
+            <span class="text-muted"><a href="https://github.com/wprudencio97" target="_blank">William Prudencio &copy; {{ today.year }}</a> </span>
         </div>
     </footer>
 
