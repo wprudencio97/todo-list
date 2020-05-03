@@ -1,7 +1,7 @@
 from todolist import app, db
 from todolist.models import Todo
 from flask import render_template, request, redirect, url_for
-from datetime import date
+import datetime
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -21,7 +21,11 @@ def home():
             db.session.add(Todo(item = 'View a custom list. Hint: Add a "/" plus "the name of a list" in the URL bar. Example: /shopping', category='Todo'))
             db.session.commit()
 
-        return render_template('home.html', items = Todo.query.filter_by(category='Todo').all(), title='Home', today=date.today())
+        x = datetime.datetime.now()
+        today = f'{x.strftime("%A")}, {x.strftime("%B")} {x.strftime("%d")}'
+        year =  x.strftime("%Y")
+
+        return render_template('home.html', items = Todo.query.filter_by(category='Todo').all(), title='Home', today=today, year=year)
 
 @app.route('/<category>', methods=['GET', 'POST'])
 def custom_list(category):
@@ -43,7 +47,11 @@ def custom_list(category):
             db.session.add(Todo(item = '<-------- Complete an Item', category=category))
             db.session.commit()
 
-        return render_template('custom_list.html', title=category, category=category, today=date.today(), items=Todo.query.filter_by(category=category).all())
+        x = datetime.datetime.now()
+        today = f'{x.strftime("%A")}, {x.strftime("%B")} {x.strftime("%d")}'
+        year =  x.strftime("%Y")
+
+        return render_template('custom_list.html', title=category, category=category, today=today, year=year, items=Todo.query.filter_by(category=category).all())
 
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
@@ -65,7 +73,10 @@ def delete():
 def edit(id):
     if request.method == 'GET':
         value = Todo.query.filter_by(id=id).first()
-        return render_template('edit.html', value=value, title='Edit', today = date.today())
+        x = datetime.datetime.now()
+        today = f'{x.strftime("%A")}, {x.strftime("%B")} {x.strftime("%d")}'
+        year =  x.strftime("%Y")
+        return render_template('edit.html', value=value, title='Edit', today = today, year=year)
     else:
         return redirect(url_for('home'))
 
