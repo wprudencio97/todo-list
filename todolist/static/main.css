@@ -25,6 +25,9 @@
 input[type=checkbox]:checked + label.strikethrough{
     text-decoration: line-through;
 }
+.strikethrough{
+    max-width: 425px;
+}
 input[type=text]{
     background-color: transparent;
     text-align: center;
