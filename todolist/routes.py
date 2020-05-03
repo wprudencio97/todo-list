@@ -13,6 +13,14 @@ def home():
 
         return redirect(url_for('home'))
     else:
+        items = Todo.query.filter_by(category='Todo').all()
+        if len(items) < 1:
+            db.session.add(Todo(item = 'Add a new Item +', category='Todo'))
+            db.session.add(Todo(item = 'Edit an Item ------------------->', category='Todo'))
+            db.session.add(Todo(item = '<-------- Complete an Item', category='Todo'))
+            db.session.add(Todo(item = 'View a custom list. Hint: Add a "/" plus "the name of a list" in the URL bar. Example: /shopping', category='Todo'))
+            db.session.commit()
+
         return render_template('home.html', items = Todo.query.filter_by(category='Todo').all(), title='Home', today=date.today())
 
 @app.route('/<category>', methods=['GET', 'POST'])
@@ -28,7 +36,14 @@ def custom_list(category):
     else:
         category = category.capitalize()
         item_list = Todo.query.filter_by(category=category).all()
-        return render_template('custom_list.html', title=category, category=category, today=date.today(), items=item_list)
+
+        if len(item_list) < 1:
+            db.session.add(Todo(item = 'Add a new Item +', category=category))
+            db.session.add(Todo(item = 'Edit an Item ------------------->', category=category))
+            db.session.add(Todo(item = '<-------- Complete an Item', category=category))
+            db.session.commit()
+
+        return render_template('custom_list.html', title=category, category=category, today=date.today(), items=Todo.query.filter_by(category=category).all())
 
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
