@@ -14,14 +14,13 @@
 .section{
     max-width: 525px;
     margin: 0 auto;
-    background-color: rgba(250, 247, 162, .75);
+    background-color: rgba(250, 247, 162, .8);
     border-radius: 5px;
 }
 .todolist{
     padding-top: 25px;
     max-width: 500px;
     margin: 0 auto;
-    background-color: rgba(250, 247, 162, .25);
 }
 input[type=checkbox]:checked + label.strikethrough{
     text-decoration: line-through;
