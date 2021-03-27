@@ -14,17 +14,21 @@
             <div class="form-check">
                 <input name="item-id" class="form-check-input" type="checkbox" value="{{ item.id }}" onChange="this.form.submit()">
                 <label class="strikethrough" for="list-item">{{ item.item }}</label>
-                <a class="edit" href="{{url_for('edit', id=item.id)}}">Edit</a>
+                <a class="edit text-muted" href="{{url_for('edit', id=item.id)}}"><i class="far fa-edit"></i></a>
             </div>
             </div>
         </form><hr>
         {% endfor %}
 
         <form action="{{ url_for('custom_list', category=category) }}" method="POST">
-            <div class="form-group">
-                <input class="form-control form-control-lg new-item" type="text" placeholder="New Item" name="newitem" autocomplete="off">
-                <input type="hidden" name="category" value="{{category}}">
-                <button type="submit" class="button">+</button>
+            <div class="form-row">
+                <div class="col-10">
+                    <input class="form-control form-control-lg new-item" type="text" placeholder="New Item" name="newitem" autocomplete="off">
+                    <input type="hidden" name="category" value="{{category}}">
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-lg btn-outline-secondary rounded-circle"><i class="fas fa-plus"></i></button>
+                </div>
             </div> 
         </form><hr>
     </div>

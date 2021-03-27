@@ -5,28 +5,33 @@
 
 <div class="container">
     <h1 class="title">To-Do List</h1>
-    <div class="section">
-    <div class="todolist">
- 
-        {% for item in items %}
-        <form action="{{ url_for('delete') }}" method="POST">
-            <div class="form-group">
-            <div class="form-check">
-                <input id="{{ item.id }}" name="item-id" class="form-check-input" type="checkbox" value="{{ item.id }}" onChange="this.form.submit()">
-                <label class="strikethrough" for="{{ item.id }}">{{ item.item }}</label>
-                <a class="edit" href="{{url_for('edit', id=item.id)}}">Edit</a>
-            </div>
-            </div>
-        </form><hr>
-        {% endfor %}
 
-        <form action="{{ url_for('home') }}" method="POST">
-            <div class="form-group">
-                <input class="form-control form-control-lg new-item" type="text" placeholder="New Item" name="newitem" autocomplete="off">
-                <button type="submit" class="button">+</button>
-            </div> 
-        </form><hr>
-    </div>
+    <div class="section">
+        <div class="todolist">
+    
+            {% for item in items %}
+            <form action="{{ url_for('delete') }}" method="POST">
+                <div class="form-group">
+                <div class="form-check">
+                    <input id="{{ item.id }}" name="item-id" class="form-check-input" type="checkbox" value="{{ item.id }}" onChange="this.form.submit()">
+                    <label class="strikethrough" for="{{ item.id }}">{{ item.item }}</label>
+                    <a class="edit text-muted" href="{{url_for('edit', id=item.id)}}"><i class="far fa-edit"></i></a>
+                </div>
+                </div>
+            </form><hr>
+            {% endfor %}
+
+            <form action="{{ url_for('home') }}" method="POST">
+                <div class="form-row">
+                    <div class="col-10">
+                        <input class="form-control form-control-lg" type="text" placeholder="New Item" name="newitem" autocomplete="off">
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-lg btn-outline-secondary rounded-circle"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div> 
+            </form><hr>
+        </div>
     </div>
 </div>
 {% endblock %}
