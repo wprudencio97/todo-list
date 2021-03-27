@@ -6,6 +6,7 @@
     max-width: 600px;
     background-color:rgba(98, 72, 63, .9);
     color: white;
+    font-family: 'Roboto Slab', serif;
 }
 .center{
     display: flex;
@@ -23,6 +24,7 @@
     padding-left: 10px;
     padding-right: 10px;
     margin: 0 auto;
+    font-family: 'Noto Sans', sans-serif;
 }
 input[type=checkbox]:checked + label.strikethrough{
     text-decoration: line-through;
